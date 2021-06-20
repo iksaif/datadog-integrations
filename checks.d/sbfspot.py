@@ -1,7 +1,6 @@
 from datadog_checks.base import AgentCheck
 import sqlite3
 
-# Le contenu de la variable spéciale __version__ sera indiqué dans la page de statut de l'Agent
 __version__ = "1.0.0"
 
 
