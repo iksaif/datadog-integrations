@@ -96,6 +96,9 @@ class CozyCouchCheck(AgentCheck):
 
     def check(self, instance):
         import asyncio
-        loop = asyncio.get_event_loop()
+        try:
+            loop = asyncio.get_event_loop()
+        except:
+            loop = asyncio.new_event_loop()
         loop.run_until_complete(self.check_async(instance))
         loop.close()
