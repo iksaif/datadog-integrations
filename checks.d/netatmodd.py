@@ -20,7 +20,7 @@ def metric_from_name(name):
 class NetatmoCheck(AgentCheck):
     """ """
 
-    PREFIX = "cozytouch."
+    PREFIX = "netatmo."
 
     def __init__(self, *args, **kwargs):
         super(NetatmoCheck, self).__init__(*args, **kwargs)
