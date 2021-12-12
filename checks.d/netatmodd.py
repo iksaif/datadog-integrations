@@ -44,7 +44,8 @@ class NetatmoCheck(AgentCheck):
         tags = self.add_tags(device, tags, ["station_name", "home_id", "home_name"])
 
         for module in device.get("modules", []):
-            self.check_device(module, tags)
+            module_tags = self.add_tags(module, tags, ["module_name"])
+            self.check_device(module, module_tags)
 
         tags = self.add_tags(device, tags, ["firmware"])
         tags.extend(["device_type:" + device["type"]])
