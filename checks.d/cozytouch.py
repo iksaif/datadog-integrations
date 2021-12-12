@@ -139,7 +139,6 @@ class CozyCouchCheck(AgentCheck):
             self.metric_for_state(state, tags)
 
         if hasattr(device, "sensors") and len(device.sensors) > 0:
-            print("\t\t Sensors")
             for sensor in device.sensors.values():
                 # move to sensor function
                 sensor_tags = [
@@ -148,7 +147,7 @@ class CozyCouchCheck(AgentCheck):
                     "sensor_widget:" + sensor.widget,
                 ] + tags
                 for sensor_state in sensor.states:
-                    self.metric_for_state(state, sensor_tags)
+                    self.metric_for_state(sensor_state, sensor_tags)
 
     def metric_for_state(self, state, tags):
         name = state["name"]
@@ -160,7 +159,7 @@ class CozyCouchCheck(AgentCheck):
             t = tags + ["value:" + value]
             self.gauge(self.PREFIX + metric + ".by_value", 1, tags=t)
         else:
-            # print("unknown type %s (%s) for metric %s" % (type(value), value, metric))
+            #print("unknown type %s (%s) for metric %s" % (type(value), value, metric))
             pass
 
     def place_info(self, place):
