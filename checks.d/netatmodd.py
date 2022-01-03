@@ -50,7 +50,8 @@ class NetatmoCheck(AgentCheck):
         tags = self.add_tags(device, tags, ["firmware"])
         tags.extend(["device_type:" + device["type"]])
 
-        for name, value in device["dashboard_data"].items():
+        data = device.get("dashboard_data", {})
+        for name, value in data.items():
             self.metric_for_data(name, value, tags)
         for k in [
             "last_setup",
